@@ -31,7 +31,7 @@ class Item(models.Model):
 
 class PhonesTechnicalSpec(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    os = models.ForeignKey(OSType, on_delete=models.CASCADE)
+    os = models.CharField(max_length=50)
     release_year = models.CharField(max_length=4)
     internal_memory = models.IntegerField()
     cpu_cores = models.CharField(max_length=20)
@@ -46,3 +46,7 @@ class PhoneDisplaySpec(models.Model):
     screen_size = models.CharField(max_length=5)
     screen_type = models.CharField(max_length=255)
     screen_resolution = models.CharField(max_length=50)
+
+
+class PhoneFeature(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
