@@ -50,3 +50,7 @@ class PhoneDisplaySpec(models.Model):
 
 class PhoneFeature(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    sim = models.CharField(max_length=10)
+    connectivity = models.CharField(max_length=255)
+    network = models.CharField(max_length=5)
+
