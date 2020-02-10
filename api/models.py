@@ -41,6 +41,18 @@ class PhonesTechnicalSpec(models.Model):
     card_slot = models.BooleanField()
 
 
+class PhoneFeature(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    sim = models.CharField(max_length=10)
+    connectivity = models.CharField(max_length=255)
+    network = models.CharField(max_length=5)
+
+
+class PhoneBody(models.Model):
+    dimensions = models.CharField(max_length=255)
+    weight = models.CharField(max_length=10)
+
+
 class PhoneDisplaySpec(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     screen_size = models.CharField(max_length=5)
@@ -48,9 +60,5 @@ class PhoneDisplaySpec(models.Model):
     screen_resolution = models.CharField(max_length=50)
 
 
-class PhoneFeature(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    sim = models.CharField(max_length=10)
-    connectivity = models.CharField(max_length=255)
-    network = models.CharField(max_length=5)
+
 
