@@ -56,11 +56,13 @@ class PhoneDisplaySpec(models.Model):
 
 
 class PhoneBody(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     dimensions = models.CharField(max_length=255)
     weight = models.CharField(max_length=10)
 
 
 class PhoneCamera(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     primary_camera = models.CharField(max_length=10)
     rear_camera = models.CharField(max_length=10)
     front_camera = models.CharField(max_length=10)
@@ -70,6 +72,13 @@ class PhoneCamera(models.Model):
     built_in_flash = models.BooleanField(default=False)
     front_flash = models.BooleanField(default=False)
 
+
+class PhoneExtras(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    resistance = models.CharField(max_length=255)
+    sensors = models.CharField(max_length=255)
+    fingerprint = models.BooleanField(default=False)
+    ip_rating = models.CharField(max_length=52)
 
 
 
