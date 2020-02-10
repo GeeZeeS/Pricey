@@ -41,6 +41,13 @@ class PhonesTechnicalSpec(models.Model):
     card_slot = models.BooleanField()
 
 
+class PhoneFeature(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    sim = models.CharField(max_length=10)
+    connectivity = models.CharField(max_length=255)
+    network = models.CharField(max_length=5)
+
+
 class PhoneDisplaySpec(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     screen_size = models.CharField(max_length=5)
@@ -48,9 +55,31 @@ class PhoneDisplaySpec(models.Model):
     screen_resolution = models.CharField(max_length=50)
 
 
-class PhoneFeature(models.Model):
+class PhoneBody(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    sim = models.CharField(max_length=10)
-    connectivity = models.CharField(max_length=255)
-    network = models.CharField(max_length=5)
+    dimensions = models.CharField(max_length=255)
+    weight = models.CharField(max_length=10)
+
+
+class PhoneCamera(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    primary_camera = models.CharField(max_length=10)
+    rear_camera = models.CharField(max_length=10)
+    front_camera = models.CharField(max_length=10)
+    dual_front_camera = models.BooleanField(default=False)
+    dual_rear_camera = models.BooleanField(default=False)
+    triple_rear_camera = models.BooleanField(default=False)
+    built_in_flash = models.BooleanField(default=False)
+    front_flash = models.BooleanField(default=False)
+
+
+class PhoneExtras(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    resistance = models.CharField(max_length=255)
+    sensors = models.CharField(max_length=255)
+    fingerprint = models.BooleanField(default=False)
+    ip_rating = models.CharField(max_length=52)
+
+
+
 
