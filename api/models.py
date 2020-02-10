@@ -48,16 +48,28 @@ class PhoneFeature(models.Model):
     network = models.CharField(max_length=5)
 
 
-class PhoneBody(models.Model):
-    dimensions = models.CharField(max_length=255)
-    weight = models.CharField(max_length=10)
-
-
 class PhoneDisplaySpec(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     screen_size = models.CharField(max_length=5)
     screen_type = models.CharField(max_length=255)
     screen_resolution = models.CharField(max_length=50)
+
+
+class PhoneBody(models.Model):
+    dimensions = models.CharField(max_length=255)
+    weight = models.CharField(max_length=10)
+
+
+class PhoneCamera(models.Model):
+    primary_camera = models.CharField(max_length=10)
+    rear_camera = models.CharField(max_length=10)
+    front_camera = models.CharField(max_length=10)
+    dual_front_camera = models.BooleanField(default=False)
+    dual_rear_camera = models.BooleanField(default=False)
+    triple_rear_camera = models.BooleanField(default=False)
+    built_in_flash = models.BooleanField(default=False)
+    front_flash = models.BooleanField(default=False)
+
 
 
 
