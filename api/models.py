@@ -41,12 +41,11 @@ class ItemModel(models.Model):
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=255)
     model = models.ForeignKey(ItemModel, on_delete=models.CASCADE)
     category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.model.name
 
     class Meta:
         verbose_name = 'Item'
