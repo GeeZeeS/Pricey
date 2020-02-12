@@ -9,6 +9,9 @@ from django.db import models
 class ItemCategory(models.Model):
     name = models.CharField(max_length=150)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = 'Item Category'
         verbose_name_plural = 'Item Categories'
@@ -16,6 +19,9 @@ class ItemCategory(models.Model):
 
 class ItemBrand(models.Model):
     name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Item Brand'
@@ -26,6 +32,9 @@ class ItemModel(models.Model):
     brand = models.ForeignKey(ItemBrand, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = 'Item Model'
         verbose_name_plural = 'Item Models'
@@ -35,6 +44,9 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
     model = models.ForeignKey(ItemModel, on_delete=models.CASCADE)
     category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Item'
@@ -56,6 +68,9 @@ class PhonesTechnicalSpec(models.Model):
     ram = models.IntegerField()
     card_slot = models.BooleanField()
 
+    def __str__(self):
+        return self.item.name
+
     class Meta:
         verbose_name = 'Phone Technical Spec'
         verbose_name_plural = 'Phone Technical Specs'
@@ -66,6 +81,9 @@ class PhoneFeature(models.Model):
     sim = models.CharField(max_length=10)
     connectivity = models.CharField(max_length=255)
     network = models.CharField(max_length=5)
+
+    def __str__(self):
+        return self.item.name
 
     class Meta:
         verbose_name = 'Phone Feature'
@@ -78,6 +96,9 @@ class PhoneDisplaySpec(models.Model):
     screen_type = models.CharField(max_length=255)
     screen_resolution = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.item.name
+
     class Meta:
         verbose_name = 'Phone Display Spec'
         verbose_name_plural = 'Phone Display Specs'
@@ -87,6 +108,9 @@ class PhoneBody(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     dimensions = models.CharField(max_length=255)
     weight = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.item.name
 
     class Meta:
         verbose_name = 'Phone Body'
@@ -104,6 +128,9 @@ class PhoneCamera(models.Model):
     built_in_flash = models.BooleanField(default=False)
     front_flash = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.item.name
+
     class Meta:
         verbose_name = 'Phone Camera'
         verbose_name_plural = 'Phone Cameras'
@@ -115,6 +142,9 @@ class PhoneExtras(models.Model):
     sensors = models.CharField(max_length=255)
     fingerprint = models.BooleanField(default=False)
     ip_rating = models.CharField(max_length=52)
+
+    def __str__(self):
+        return self.item.name
 
     class Meta:
         verbose_name = 'Phone Extra'
