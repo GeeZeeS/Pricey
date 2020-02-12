@@ -15,6 +15,7 @@ class ItemCategory(models.Model):
     class Meta:
         verbose_name = 'Item Category'
         verbose_name_plural = 'Item Categories'
+        ordering = ['name']
 
 
 class ItemBrand(models.Model):
@@ -26,6 +27,7 @@ class ItemBrand(models.Model):
     class Meta:
         verbose_name = 'Item Brand'
         verbose_name_plural = 'Item Brands'
+        ordering = ['name']
 
 
 class ItemModel(models.Model):
@@ -38,18 +40,21 @@ class ItemModel(models.Model):
     class Meta:
         verbose_name = 'Item Model'
         verbose_name_plural = 'Item Models'
+        ordering = ['name']
 
 
 class Item(models.Model):
     model = models.ForeignKey(ItemModel, on_delete=models.CASCADE)
     category = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.model.name
+        return self.name
 
     class Meta:
         verbose_name = 'Item'
         verbose_name_plural = 'Items'
+        ordering = ['name']
 
 
 ###############################################################

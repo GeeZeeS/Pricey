@@ -7,8 +7,9 @@ class PhoneInfoSpider(CrawlSpider):
     BASE_URL = 'https://www.scrooge.co.uk'
     CATEGORY_ID = 1
     PAGES_COUNT = 25
+    # scrapy crawl phone_info_spider
     name = 'phone_info_spider'
-    start_urls = ['https://www.scrooge.co.uk/c/165/mobile_phones.html?order_by=pricevat&order_dir=desc&page=1']
+    start_urls = [f'https://www.scrooge.co.uk/c/165/mobile_phones.html?order_by=pricevat&order_dir=desc&page={PAGES_COUNT}']
 
     def parse(self, response):
         for page in range(1, self.PAGES_COUNT):
@@ -33,14 +34,16 @@ class PhoneInfoSpider(CrawlSpider):
         )
 
         item_model_str = item_details_raw.split(' ', 1)[1]
+        head, sep, tail = item_model_str.partition('(')
         item_model, created = ItemModel.objects.get_or_create(
             brand=item_brand,
-            name=item_model_str
+            name=head
         )
 
         item, created = Item.objects.get_or_create(
             model=item_model,
-            category=item_category
+            category=item_category,
+            name=item_model_str
         )
         print(item)
         yield None
