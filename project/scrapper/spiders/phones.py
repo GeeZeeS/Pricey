@@ -9,7 +9,9 @@ class PhoneInfoSpider(CrawlSpider):
     PAGES_COUNT = 25
     # scrapy crawl phone_info_spider
     name = 'phone_info_spider'
-    start_urls = [f'https://www.scrooge.co.uk/c/165/mobile_phones.html?order_by=pricevat&order_dir=desc&page={PAGES_COUNT}']
+    start_urls = [
+        f'https://www.scrooge.co.uk/c/165/mobile_phones.html?order_by=pricevat&order_dir=desc&page={PAGES_COUNT}'
+    ]
 
     def parse(self, response):
         for page in range(1, self.PAGES_COUNT):
